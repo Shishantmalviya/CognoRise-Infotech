@@ -1,1 +1,46 @@
+import java.util.Scanner;
 
+public class CalculatorApp {
+
+    public static void main(String[] args) {
+
+        try (Scanner input = new Scanner(System.in)) {
+            double firstNumber, secondNumber, result = 0;
+            char operator;
+            System.out.println("Welcome to the Calculator App ");
+            System.out.print("Enter the first number: ");
+            firstNumber = input.nextDouble();
+
+            System.out.print("Enter the operator (+, -, *, /): ");
+            operator = input.next().charAt(0);
+
+            System.out.print("Enter the second number: ");
+            secondNumber = input.nextDouble();
+
+            switch (operator) {
+                case '+':
+                    result = firstNumber + secondNumber;
+                    break;
+                case '-':
+                    result = firstNumber - secondNumber;
+                    break;
+                case '*':
+                    result = firstNumber * secondNumber;
+                    break;
+                case '/':
+                    if (secondNumber != 0)
+                        result = firstNumber / secondNumber;
+                    else {
+                        throw new ArithmeticException("Division by zero is not allowed!");
+                    }
+                    break;
+                default:
+                    throw new IllegalArgumentException("Invalid operator");
+            }
+
+            System.out.println("Result: " + result);
+        } catch (Exception e) {
+            System.out.println("Error: " + e.getMessage());
+        }
+    }
+}
